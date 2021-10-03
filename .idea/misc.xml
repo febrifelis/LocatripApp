@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/drawable/ic_icon_wallet.xml" value="0.2203125" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/drawable/ic_wallet.xml" value="0.2203125" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/layout/activity_edit_profile.xml" value="0.11458333333333333" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/layout/activity_my_wallet.xml" value="0.21" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/layout/activity_pilih_bangku.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/layout/activity_sign_in.xml" value="0.22" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/layout/activity_sign_up.xml" value="0.11458333333333333" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/layout/activity_sign_up_photoscreen.xml" value="0.11458333333333333" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/layout/activity_tiket.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/layout/fragment_dashboard.xml" value="0.11458333333333333" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/layout/fragment_setting.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/layout/fragment_tiket.xml" value="0.21" />
+        <entry key="..\:/Users/ASUS/Downloads/Locatrip/app/src/main/res/layout/row_item_checkout_white.xml" value="0.11458333333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>

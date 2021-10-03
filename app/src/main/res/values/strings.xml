@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Locatrip App</string>
+    <string name="lewati_perkenalan">Lewati Perkenalan</string>
+    <string name="lanjutkan">Lanjutkan</string>
+    <string name="mulai">Mulai</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="nama">Nama</string>
+    <string name="masuk">Masuk</string>
+    <string name="daftar_akun_baru">Daftar Akun Baru</string>
+    <string name="buat_akun">Buat Akun</string>
+    <string name="photo">Photo</string>
+    <string name="upload_nanti">Upload Nanti</string>
+    <string name="selamat_datang">Selamat Datang,\nFebri Listio</string>
+    <string name="simpan_dan_lanjutkan">Simpan dan Lanjutkan</string>
+    <string name="trip_tersedia">Trip Tersedia</string>
+    <string name="trip_comingsoon">Trip yang akan datang</string>
+    <string name="pilih_bangku">Pilih Bangku</string>
+    <string name="checkout">Checkout</string>
+    <string name="bayar_sekarang">Bayar Sekarang</string>
+    <string name="batalkan">Batalkan</string>
+    <string name="detail">Detail</string>
+    <string name="tanggal_dan_waktu">Tanggal dan Waktu</string>
+    <string name="lokasi">Lokasi</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="kursi">Kursi</string>
+    <string name="metode_pembayaran">Metode Pembayaran</string>
+    <string name="e_wallet">E-Wallet</string>
+    <string name="cash">Cash</string>
+    <string name="total_saldo">Total Saldo</string>
+    <string name="lihat_tiket">Lihat Tiket</string>
+    <string name="menu">Menu</string>
+    <string name="tiket_berhasil_dibeli">Tiket Berhasil Dibeli</string>
+    <string name="simpan_data_baru">Simpan Data Baru</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="my_wallet">My Wallet</string>
+    <string name="my_history">My History</string>
+    <string name="tanggal_keberangkatan">Tanggal Keberangkatan</string>
+    <string-array name="metode_pembayaran">
+        <item>E-Wallet</item>
+        <item>Cash</item>
+    </string-array>
+
+</resources>

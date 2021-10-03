@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "5180456249",
+    "firebase_url": "https://locatrip-9045b-default-rtdb.firebaseio.com",
+    "project_id": "locatrip-9045b",
+    "storage_bucket": "locatrip-9045b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5180456249:android:e4ec6df22e30eda159bce8",
+        "android_client_info": {
+          "package_name": "com.fbrproject.locatripapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5180456249-r5qahtodo2bqtmgpsipl0mg8k4n9kehb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZnc3V9fYgI-B5RPdi9UjelYnGXB7CSjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5180456249-r5qahtodo2bqtmgpsipl0mg8k4n9kehb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
