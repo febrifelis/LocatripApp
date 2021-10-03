@@ -50,7 +50,6 @@ class DashboardFragment : Fragment() {
             .apply(RequestOptions.circleCropTransform())
             .into((iv_profile))
 
-        rv_trip.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rv_coming_soon.layoutManager = LinearLayoutManager(context)
         getData()
     }
@@ -62,10 +61,6 @@ class DashboardFragment : Fragment() {
                 for (getdataSnapshot in dataSnapshot.children) {
                     val Trip = getdataSnapshot.getValue(Trip::class.java)
                     dataList.add(Trip!!)
-                }
-                rv_trip.adapter = TripBaruAdapter(dataList) {
-                    val intent = Intent(context, DetailActivity::class.java).putExtra("data", it)
-                    startActivity(intent)
                 }
 
                 rv_coming_soon.adapter = ComingSoonAdapter(dataList) {

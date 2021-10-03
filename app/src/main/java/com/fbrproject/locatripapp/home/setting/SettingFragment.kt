@@ -1,6 +1,7 @@
 package com.fbrproject.locatripapp.home.setting
 
 import android.content.Intent
+import android.content.Intent.getIntent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -43,10 +44,11 @@ class SettingFragment : Fragment() {
         tv_nama.text = preferences.getValues("nama")
         tv_email.text = preferences.getValues("email")
 
-        Glide.with(this)
+       Glide.with(this)
             .load(preferences.getValues("url"))
             .apply(RequestOptions.circleCropTransform())
             .into(iv_profile)
+
 
         tv_my_wallet.setOnClickListener {
             startActivity(Intent(activity, TopUpWalletActivity::class.java))

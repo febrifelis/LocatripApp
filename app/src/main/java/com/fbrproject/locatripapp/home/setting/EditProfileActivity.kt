@@ -29,7 +29,7 @@ class EditProfileActivity : AppCompatActivity() {
         Glide.with(this)
             .load(preferences.getValues("url"))
             .apply(RequestOptions.circleCropTransform())
-            .into(imageView5)
+            .into(ivProfile)
 
         et_nama.setText(preferences.getValues("nama"))
         et_username.setText(preferences.getValues("user"))
