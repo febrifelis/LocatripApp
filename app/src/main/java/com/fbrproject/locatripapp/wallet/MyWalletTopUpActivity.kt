@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.fbrproject.locatrip.R
 import kotlinx.android.synthetic.main.activity_my_wallet_top_up.*
-import java.lang.NullPointerException
 import java.lang.NumberFormatException
 
 
@@ -26,7 +25,7 @@ class MyWalletTopUpActivity : AppCompatActivity() {
     }
 
     private fun initListener() {
-        btn_top_up.setOnClickListener {
+        btn_top.setOnClickListener {
             startActivity(Intent(this, MyWalletSuccessActivity::class.java))
         }
 
@@ -56,18 +55,18 @@ class MyWalletTopUpActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {
                 try {
                     if (s.toString().toInt() >= 10000) {
-                        btn_top_up.visibility = View.VISIBLE
+                        btn_top.visibility = View.VISIBLE
                     } else {
                         tv_10k.setTextColor(resources.getColor(R.color.color_white))
                         tv_10k.setBackgroundResource(R.drawable.shape_linee_white)
                         status10K = false
-                        btn_top_up.visibility = View.INVISIBLE
+                        btn_top.visibility = View.INVISIBLE
                     }
                 } catch (e : NumberFormatException) {
                     tv_10k.setTextColor(resources.getColor(R.color.color_white))
                     tv_10k.setBackgroundResource(R.drawable.shape_linee_white)
                     status10K = false
-                    btn_top_up.visibility = View.INVISIBLE
+                    btn_top.visibility = View.INVISIBLE
                 }
             }
         })
@@ -78,7 +77,7 @@ class MyWalletTopUpActivity : AppCompatActivity() {
         textView.setBackgroundResource(R.drawable.shape_linee_orange)
         status10K = true
 
-        btn_top_up.visibility = View.VISIBLE
+        btn_top.visibility = View.VISIBLE
         et_amount.setText("10000")
     }
 
@@ -87,7 +86,7 @@ class MyWalletTopUpActivity : AppCompatActivity() {
         textView.setBackgroundResource(R.drawable.shape_linee_white)
         status10K = false
 
-        btn_top_up.visibility = View.INVISIBLE
+        btn_top.visibility = View.INVISIBLE
         et_amount.setText("")
     }
 

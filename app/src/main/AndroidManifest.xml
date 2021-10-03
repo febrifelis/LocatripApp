@@ -27,6 +27,9 @@
             android:name="com.fbrproject.locatripapp.home.tiket.TiketActivity"
             android:exported="true" />
          <activity
+            android:name="com.fbrproject.locatripapp.wallet.TopUpWalletActivity"
+            android:exported="true" />
+         <activity
             android:name="com.fbrproject.locatripapp.wallet.MyWalletActivity"
             android:exported="true" />
         <activity

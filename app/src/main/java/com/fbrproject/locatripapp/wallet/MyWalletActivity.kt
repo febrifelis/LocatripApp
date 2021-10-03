@@ -3,61 +3,34 @@ package com.fbrproject.locatripapp.wallet
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.fbrproject.locatrip.R
-import com.fbrproject.locatripapp.wallet.adapter.WalletAdapter
+import com.fbrproject.locatrip.utils.Preferences
 import com.fbrproject.locatripapp.wallet.model.Wallet
-import kotlinx.android.synthetic.main.activity_my_wallet.*
+import kotlinx.android.synthetic.main.activity_my_wallet.btn_top
+import kotlinx.android.synthetic.main.activity_my_wallet.tv_saldo
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MyWalletActivity : AppCompatActivity() {
 
     private var dataList = ArrayList<Wallet>()
 
+    private lateinit var preferences: Preferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_wallet)
+        setContentView(R.layout.activity_topup)
 
-        loadDummyData()
+        preferences = Preferences(this)
 
-    }
+        val localeID = Locale("in", "ID")
+        val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
+        tv_saldo.setText(formatRupiah.format(preferences.getLongValues("saldo")))
 
-    private fun initListener() {
-        rv_transaksi.layoutManager = LinearLayoutManager(this)
-        rv_transaksi.adapter = WalletAdapter(dataList){
-
+        btn_top.setOnClickListener {
+            var intent = Intent(this, TopUpWalletActivity::class.java)
+            startActivity(intent)
         }
-
-        btn_top_up.setOnClickListener {
-            startActivity(Intent(this, MyWalletTopUpActivity::class.java))
-        }
-    }
-
-    private fun loadDummyData() {
-        dataList.add(
-            Wallet(
-                "Jakarta - Bandung",
-                "Selasa, 12 Jan 2021",
-                700000.0,
-                "0"
-            )
-        )
-        dataList.add(
-            Wallet(
-                "Top Up",
-                "Selasa, 12 Jan 2021",
-                1700000.0,
-                "1"
-            )
-        )
-        dataList.add(
-            Wallet(
-                "Jakarta - Bandung",
-                "Selasa, 12 Jan 2021",
-                700000.0,
-                "0"
-            )
-        )
-
-        initListener()
     }
 }

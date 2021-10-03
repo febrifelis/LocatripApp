@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fbrproject.locatrip.R
 import com.fbrproject.locatrip.utils.Preferences
+import com.fbrproject.locatripapp.wallet.TopUpWalletActivity
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.fragment_setting.*
 
@@ -48,7 +49,7 @@ class SettingFragment : Fragment() {
             .into(iv_profile)
 
         tv_my_wallet.setOnClickListener {
-            startActivity(Intent(activity, MyWalletActivity::class.java))
+            startActivity(Intent(activity, TopUpWalletActivity::class.java))
         }
 
         tv_edit_profile.setOnClickListener {
