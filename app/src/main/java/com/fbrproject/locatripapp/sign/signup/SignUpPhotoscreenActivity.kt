@@ -10,14 +10,18 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fbrproject.locatripapp.home.HomeActivity
 import com.fbrproject.locatrip.R
+import com.fbrproject.locatrip.sign.signin.User
 import com.fbrproject.locatrip.utils.Preferences
 import com.fbrproject.locatripapp.sign.signin.SignInActivity
+import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.karumi.dexter.Dexter
@@ -39,6 +43,10 @@ class SignUpPhotoscreenActivity : AppCompatActivity(),PermissionListener {
     lateinit var storageReferensi: StorageReference
     lateinit var preferences: Preferences
 
+    lateinit var user : User
+    private lateinit var mFirebaseDatabase: DatabaseReference
+    private lateinit var mFirebaseInstance: FirebaseDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_photoscreen)
@@ -56,17 +64,20 @@ class SignUpPhotoscreenActivity : AppCompatActivity(),PermissionListener {
                 iv_add.setImageResource(R.drawable.ic_btn_upload)
                 iv_profile.setImageResource(R.drawable.us_pict)
             } else {
-                Dexter.withActivity(this)
-                    .withPermission(Manifest.permission.CAMERA)
-                    .withListener(this)
-                    .check()
+//                Dexter.withActivity(this)
+//                    .withPermission(Manifest.permission.CAMERA)
+//                    .withListener(this)
+//                    .check()
+                ImagePicker.with(this)
+                    .cameraOnly()  //User can only capture image using Camera
+                    .start()
             }
         }
 
         btn_home.setOnClickListener {
             finishAffinity()
 
-            var goHome = Intent(this@SignUpPhotoscreenActivity, SignInActivity::class.java)
+            var goHome = Intent(this@SignUpPhotoscreenActivity, HomeActivity::class.java)
             startActivity(goHome)
         }
 
@@ -83,12 +94,12 @@ class SignUpPhotoscreenActivity : AppCompatActivity(),PermissionListener {
                         Toast.makeText(this, "Uploaded", Toast.LENGTH_LONG).show()
 
                         ref.downloadUrl.addOnSuccessListener {
-                            preferences.setValues("url", it.toString())
+                            saveToFirebase(it.toString())
                         }
 
                         finishAffinity()
                         var goHome =
-                            Intent(this@SignUpPhotoscreenActivity, SignInActivity::class.java)
+                            Intent(this@SignUpPhotoscreenActivity, HomeActivity::class.java)
                         startActivity(goHome)
                     }
                     .addOnFailureListener {
@@ -103,6 +114,37 @@ class SignUpPhotoscreenActivity : AppCompatActivity(),PermissionListener {
 
             }
         }
+    }
+
+    private fun saveToFirebase(url: String) {
+
+        mFirebaseDatabase.child(user.username!!).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                user.url = url
+                mFirebaseDatabase.child(user.username!!).setValue(user)
+
+                preferences.setValues("nama", user.nama.toString())
+                preferences.setValues("user", user.username.toString())
+                preferences.setValues("saldo", "")
+                preferences.setValues("url", "")
+                preferences.setValues("email", user.email.toString())
+                preferences.setValues("status", "1")
+                preferences.setValues("url", url)
+
+                finishAffinity()
+                val intent = Intent(this@SignUpPhotoscreenActivity,
+                    HomeActivity::class.java)
+                startActivity(intent)
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@SignUpPhotoscreenActivity, ""+error.message, Toast.LENGTH_LONG).show()
+            }
+        })
+
+
     }
 
     override fun onPermissionGranted(response: PermissionGrantedResponse?) {
@@ -125,23 +167,43 @@ class SignUpPhotoscreenActivity : AppCompatActivity(),PermissionListener {
     }
 
     override fun onBackPressed() {
-        Toast.makeText(this, "Bingung ? Bisa upload nanti", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Bisa upload nanti", Toast.LENGTH_LONG).show()
     }
 
-    @SuppressLint("MissingSuperCall")
+//    @SuppressLint("MissingSuperCall")
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+//            var bitmap = data?.extras?.get("data") as Bitmap
+//            statusAdd = true
+//
+//            filePath = data.getData()!!
+//            Glide.with(this)
+//                .load(bitmap)
+//                .apply(RequestOptions.circleCropTransform())
+//                .into(iv_profile)
+//
+//            btn_save.visibility = View.VISIBLE
+//            iv_add.setImageResource(R.drawable.ic_btn_delete)
+//        }
+//    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            var bitmap = data?.extras?.get("data") as Bitmap
-            statusAdd = true
+    super.onActivityResult(requestCode, resultCode, data)
+    if (resultCode == Activity.RESULT_OK) {
+        statusAdd = true
+        filePath = data?.data!!
 
-            filePath = data.getData()!!
-            Glide.with(this)
-                .load(bitmap)
-                .apply(RequestOptions.circleCropTransform())
-                .into(iv_profile)
+        Glide.with(this)
+            .load(filePath)
+            .apply(RequestOptions.circleCropTransform())
+            .into(iv_profile)
 
-            btn_save.visibility = View.VISIBLE
-            iv_add.setImageResource(R.drawable.ic_btn_delete)
+        btn_save.visibility = View.VISIBLE
+        iv_add.setImageResource(R.drawable.ic_btn_delete)
+
+    }else if (resultCode == ImagePicker.RESULT_ERROR) {
+        Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+    } else {
+        Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -59,7 +59,7 @@ class SettingFragment : Fragment() {
         }
 
         tv_edit_profile3.setOnClickListener{
-            val url = "https://wa.me/8561805684"
+            val url = "https://t.me/locatripcare"
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
             startActivity(i)
